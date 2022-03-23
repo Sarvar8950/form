@@ -12,14 +12,18 @@ form{
   margin: 20px auto;
   position: relative;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
-.details div {
+.details table {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 10px;
-  width: 250px;
-  padding: 10px;
-  text-align: left;
+  width: 100%;
+}
+.details table tr{
+  border: 1px solid #ccc;
+}
+.details table th{
+  border: 1px solid #ccc;
+}
+.details table tr td{
+  border: 1px solid #ccc;
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 
-export default function Showdata({name,age,department,address,isMarried}) {
-    
-  return (
-    <div>
-      <p>Name : {name}</p>
-      <p>Age : {age}</p>
-      <p>Department : {department}</p>
-      <p>address : {address}</p>
-      <p>Maritual Status : {isMarried === true ? "Married" : "Not Married"}</p>
-    </div>
-  )
+export default function Showdata({ name, age, department, address, isMarried }) {
+
+    return (
+        <tr>
+            <td>{name}</td>
+            <td>{age}</td>
+            <td>{department}</td>
+            <td>{address}</td>
+            <td>{isMarried === true ? "Married" : "Not Married"}</td>
+        </tr>
+    )
 }

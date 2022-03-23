@@ -3,28 +3,28 @@ import Showdata from './Showdata'
 
 export default function Form() {
     const [data, setData] = React.useState({
-        name : "",
-        age : "",
-        address : "",
-        department : "",
-        salary : "",
-        isMarried : false
+        name: "",
+        age: "",
+        address: "",
+        department: "",
+        salary: "",
+        isMarried: false
     })
     const [list, setList] = React.useState([])
     React.useEffect(() => {
         renderdata()
-    },[])
+    }, [])
     function renderdata() {
         fetch(`http://localhost:3001/details`)
-        .then(res => res.json())
-        .then(res => setList(res))
+            .then(res => res.json())
+            .then(res => setList(res))
     }
 
     function handelInput(e) {
-        const {id, value, checked, type} = e.target
+        const { id, value, checked, type } = e.target
         setData({
             ...data,
-            [id] : type === "checkbox" ? checked : value
+            [id]: type === "checkbox" ? checked : value
         })
     }
 
@@ -33,18 +33,18 @@ export default function Form() {
         var jsondata = JSON.stringify(data)
         console.log(data.name)
         console.log(data.name.length)
-        if(data.name.length < 2 || data.salary.length < 1) {
+        if (data.name.length < 2 || data.salary.length < 1) {
             alert("Please Enter Valid data")
         } else {
             fetch(`http://localhost:3001/details`, {
-                method : "POST",
-                body : jsondata,
-                headers : {
-                    "content-type" : "application/json"
+                method: "POST",
+                body: jsondata,
+                headers: {
+                    "content-type": "application/json"
                 }
             })
-            .then(res => res.json())
-            .then(() => renderdata())
+                .then(res => res.json())
+                .then(() => renderdata())
         }
     }
 
@@ -52,11 +52,11 @@ export default function Form() {
     return (
         <div>
             <form onSubmit={addData}>
-                <input type="text" id='name' placeholder='Enter Name' onChange={handelInput}/>
+                <input type="text" id='name' placeholder='Enter Name' onChange={handelInput} />
                 <br />
-                <input type="number" id='age' placeholder='Enter Age' onChange={handelInput}/>
+                <input type="number" id='age' placeholder='Enter Age' onChange={handelInput} />
                 <br />
-                <input type="text" id='address' placeholder='Enter Address' onChange={handelInput}/>
+                <input type="text" id='address' placeholder='Enter Address' onChange={handelInput} />
                 <br />
                 <label>
                     Department : <select id="department" onChange={handelInput}>
@@ -68,17 +68,27 @@ export default function Form() {
                     </select>
                 </label>
                 <br />
-                <input type="number" id='salary' placeholder='Enter Salary' onChange={handelInput}/>
+                <input type="number" id='salary' placeholder='Enter Salary' onChange={handelInput} />
                 <br />
                 <label>
                     <span> Maritual Status : </span>
-                    <input type="checkbox" id='isMarried' onChange={handelInput}/>
+                    <input type="checkbox" id='isMarried' onChange={handelInput} />
                 </label>
                 <br />
-                <input type="submit" value="SUBMIT"/>
+                <input type="submit" value="SUBMIT" />
             </form>
             <div className="details">
-                {list.map((item) => <Showdata {...item} key={item.id} /> )}
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Department</th>
+                        <th>Address</th>
+                        <th>Marital Status</th>
+                    </tr>
+                    {list.map((item) => <Showdata {...item} key={item.id} />)}
+                </table>
+
             </div>
         </div>
     )
